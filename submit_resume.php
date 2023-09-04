@@ -32,11 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $work_experience = implode(', ', $work_experience);
 
 
-  echo $company;
-  echo "<br>";
-  echo $exp_position;
-  echo "<br>";
-  echo $work_experience;
   
   
 
