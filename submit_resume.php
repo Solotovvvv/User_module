@@ -28,8 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Loop through the submitted data and display the values
   $company = implode(', ', $exp_company);
-  $exp_position = implode(', ', $exp_position);
-  $work_experience = implode(', ', $work_experience);
+
 
 
   
