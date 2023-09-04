@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                             <div class="bs-stepper-content">
-                                <form id="stepperForm" onSubmit="return false">
+                                <form id="stepperForm"  method="POST" action="submit_resume.php">
                                     <div id="test-l-1" role="tabpanel" class="bs-stepper-pane"
                                         aria-labelledby="stepper1trigger1">
 
@@ -150,7 +150,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Position</label>
-                                                    <input type="text" class="form-control" id="fname" name="fname">
+                                                    <input type="text" class="form-control" id="position" name="position">
                                                   </div>
                                             </div>
                                             <div class="col">
@@ -186,13 +186,13 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Objective</label>
-                                                    <textarea class="form-control"rows="2" id="summary"></textarea>
+                                                    <textarea class="form-control"rows="2" id="summary" name="summary"></textarea>
                                                   </div>
                                             </div>
                                         </div>
 
                                         
-                                        <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                                        <button  type= "button" class="btn btn-primary" onclick="stepper1.next()">Next</button>
                                     </div>
 
                                     <div id="test-l-2" role="tabpanel" class="bs-stepper-pane"
@@ -288,8 +288,8 @@
                               
                             </div>
 
-                                        <button class="btn btn-secondary" onclick="stepper1.previous()">Previous</button>
-                                        <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                                        <button class="btn btn-secondary" type="button" onclick="stepper1.previous()">Previous</button>
+                                        <button class="btn btn-primary"  type="button" onclick="stepper1.next()">Next</button>
                                     </div>
                 
                                     <div id="test-l-3" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepper1trigger3">
@@ -344,8 +344,8 @@
         <button class="btn btn-danger" type="button" id="removeExperienceButton">Remove</button>
          </div>
 </div>
-            <button class="btn btn-secondary" onclick="stepper1.previous()">Previous</button>
-            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+            <button class="btn btn-secondary"type="button" onclick="stepper1.previous()">Previous</button>
+            <button class="btn btn-primary"type="button" onclick="stepper1.next()">Next</button>
         </div>
 
                                     <div id="test-l-4" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepper1trigger4">
@@ -362,27 +362,17 @@
                                                         
                                                     </div>
                                                 </div>
-
-                                      </div>
-                                      
-                                      
+                                      </div>                                                                     
                                       <button class="btn btn-success mr-2" type="button" id="addSkills">+</button>
-                                      <button class="btn btn-danger" type="button" id="removeskills">-</button>
-                                  
-                                  
-                                  
-                                      <div>
-                                        
+                                      <button class="btn btn-danger" type="button" id="removeskills">-</button>                        
+                                      <div>                                       
                                     </div>
-
-
                                        <br><h3>Certificates</h3> <!-- Corrected the closing tag for h3 -->
-
                                     <div class="row cert">
                                         <div class="col-10">
                                             <div class="form-group">
                                                 <label>Description</label>
-                                                <textarea class="form-control" name="cert_descp[]" rows="1"></textarea>
+                                                <textarea class="form-control" name="cert_desc[]" rows="1"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-2">
@@ -390,19 +380,13 @@
                                                 <label>Year</label>
                                                 <input type="text" class="form-control" name="cert_year[]" placeholder="Year">
                                             </div>
-                                        </div>
-                                        
-                                      
-                                        
-                                       
+                                        </div>        
                                     
                                     </div>
                                     <button class="btn btn-success mr-2" type="button" id="add_cert">+</button>
                                     <button class="btn btn-danger" type="button" id="remove_cert">-</button>
-
-
                                 </div>
-                                <button class="btn btn-secondary" onclick="stepper1.previous()">Previous</button>
+                                <button class="btn btn-secondary" type="button" onclick="stepper1.previous()">Previous</button>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                  </form>
@@ -416,10 +400,26 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bs-stepper@1.7.0/dist/js/bs-stepper.min.js"></script>
-        <script>
+        <footer class="main-footer">
+            <strong>
+                &copy; 2023-2024 <a href="#" target="_blank" class="text-muted">Business Directory Systems</a>.
+            </strong>
+            All rights reserved.
+        </footer>
+        <aside class="control-sidebar control-sidebar-dark"></aside>
+    </div>
+
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="dist/js/adminlte.js"></script>
+    <script src="plugins/datatables/bootstrap 4/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables/bootstrap 4/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script>
 
 
-            document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
                 
                 var stepper1 = new Stepper(document.querySelector('#stepper1'), {
                     linear: true,
@@ -440,153 +440,126 @@
                     });
                 });
             });
-        </script>
 
-        <footer class="main-footer">
-            <strong>
-                &copy; 2023-2024 <a href="#" target="_blank" class="text-muted">Business Directory Systems</a>.
-            </strong>
-            All rights reserved.
-        </footer>
-        <aside class="control-sidebar control-sidebar-dark"></aside>
-    </div>
 
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <script src="dist/js/adminlte.js"></script>
-    <script src="plugins/datatables/bootstrap 4/jquery.dataTables.min.js"></script>
-    <script src="plugins/datatables/bootstrap 4/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
-    <script>
     $(document).ready(function () {
-    // Get the button
-    var addExperienceButton = $("#addExperienceButton");
+                        var addExperienceButton = $("#addExperienceButton");
 
-    // Add an event listener to the button
-    addExperienceButton.click(function (event) {
-        // Prevent the default button behavior
-        event.preventDefault();
+                        // Add an event listener to the button
+                        addExperienceButton.click(function (event) {
+                            // Prevent the default button behavior
+                            event.preventDefault();
 
-        // Get the current experience entry
-        var experienceEntry = $(".experience-entry:last");
+                            // Get the current experience entry
+                            var experienceEntry = $(".experience-entry:last");
 
-        // Clone the experience entry
-        var clonedExperienceEntry = experienceEntry.clone();
+                            // Clone the experience entry
+                            var clonedExperienceEntry = experienceEntry.clone();
 
-        // Remove the `id` attribute from the cloned experience entry
-        clonedExperienceEntry.removeAttr("id");
+                            // Remove the `id` attribute from the cloned experience entry
+                            clonedExperienceEntry.removeAttr("id");
 
-        // Append the cloned experience entry to the experience entries container
-        $(".experience-entries").append(clonedExperienceEntry);
+                            // Append the cloned experience entry to the experience entries container
+                            $(".experience-entries").append(clonedExperienceEntry);
 
-        // Reset the form fields in the cloned entry (optional)
-        clonedExperienceEntry.find('input[type="text"]').val('');
-    });
+                            // Reset the form fields in the cloned entry (optional)
+                            clonedExperienceEntry.find('input[type="text"]').val('');
+                        });
 
+                        // Get the button
+                        var removeExperienceButton = $("#removeExperienceButton");
 
+                        // Add an event listener to the button
+                        removeExperienceButton.click(function (event) {
+                            // Prevent the default button behavior
+                            event.preventDefault();
 
-    // Get the button
-    var removeExperienceButton = $("#removeExperienceButton");
+                            // Check if there is more than one experience entry before removing
+                            var experienceEntries = $(".experience-entry");
+                            if (experienceEntries.length > 1) {
+                            // Remove the last experience entry
+                            experienceEntries.last().remove();
+                            }
+                        });
 
-    // Add an event listener to the button
-    removeExperienceButton.click(function (event) {
-        // Prevent the default button behavior
-        event.preventDefault();
+                        var addSkillsButton = $("#addSkills");
 
-        // Check if there is more than one experience entry before removing
-        var experienceEntries = $(".experience-entry");
-        if (experienceEntries.length > 1) {
-            // Remove the last experience entry
-            experienceEntries.last().remove();
-        }
-    });
+                        // Add an event listener to the button
+                        addSkillsButton.click(function (event) {
+                            // Prevent the default button behavior
+                            event.preventDefault();
 
+                            // Get the current skills input field
+                            var skillsInput = $(".skills:last");
 
-    var addSkillsButton = $("#addSkills");
+                            // Clone the skills input field
+                            var clonedSkillsInput = skillsInput.clone();
 
-// Add an event listener to the button
-addSkillsButton.click(function (event) {
-  // Prevent the default button behavior
-  event.preventDefault();
+                            // Remove the `id` attribute from the cloned skills input field
+                            clonedSkillsInput.removeAttr("id");
 
-  // Get the current skills input field
-  var skillsInput = $(".skills:last");
+                            // Append the cloned skills input field after the current skills input field
+                            clonedSkillsInput.insertAfter(skillsInput);
 
-  // Clone the skills input field
-  var clonedSkillsInput = skillsInput.clone();
+                            // Reset the value of the cloned input field (optional)
+                            clonedSkillsInput.find("input").val("");
+                        });
 
-  // Remove the `id` attribute from the cloned skills input field
-  clonedSkillsInput.removeAttr("id");
+                        var removeskillsButton = $("#removeskills");
 
-  // Append the cloned skills input field after the current skills input field
-  clonedSkillsInput.insertAfter(skillsInput);
+                        // Add an event listener to the button
+                        removeskillsButton.click(function (event) {
+                            // Prevent the default button behavior
+                            event.preventDefault();
 
-  // Reset the value of the cloned input field (optional)
-  clonedSkillsInput.find("input").val("");
-});
+                            // Check if there is more than one skills entry before removing
+                            var skillsEntries = $(".skills");
+                            if (skillsEntries.length > 1) {
+                            // Remove the last skills entry
+                            skillsEntries.last().remove();
+                            }
+                        });
 
+                        var addCertButton = $("#add_cert");
 
-var removeskillsButton = $("#removeskills");
+                        // Add an event listener to the button
+                        addCertButton.click(function (event) {
+                            // Prevent the default button behavior
+                            event.preventDefault();
 
-// Add an event listener to the button
-removeskillsButton.click(function (event) {
-    // Prevent the default button behavior
-    event.preventDefault();
+                            // Get the current certificate entry
+                            var certificateEntry = $(".row.cert:last");
 
-    // Check if there is more than one skills entry before removing
-    var skillsEntries = $(".skills");
-    if (skillsEntries.length > 1) {
-        // Remove the last skills entry
-        skillsEntries.last().remove();
-    }
-});
+                            // Clone the certificate entry
+                            var clonedCertificateEntry = certificateEntry.clone();
 
+                            // Remove the `id` attribute from the cloned certificate entry (if needed)
+                            clonedCertificateEntry.removeAttr("id");
 
+                            // Append the cloned certificate entry after the current certificate entry
+                            clonedCertificateEntry.insertAfter(certificateEntry);
 
-var addCertButton = $("#add_cert");
+                            // Reset the values of the cloned inputs (optional)
+                            clonedCertificateEntry.find('textarea[name="cert_descp[]"]').val('');
+                            clonedCertificateEntry.find('input[name="cert_year[]"]').val('');
+                        });
 
-// Add an event listener to the button
-addCertButton.click(function (event) {
-  // Prevent the default button behavior
-  event.preventDefault();
+                        var removecert = $("#remove_cert");
 
-  // Get the current certificate entry
-  var certificateEntry = $(".row.cert:last");
+                        // Add an event listener to the button
+                        removecert.click(function (event) {
+                            // Prevent the default button behavior
+                            event.preventDefault();
 
-  // Clone the certificate entry
-  var clonedCertificateEntry = certificateEntry.clone();
+                            // Check if there is more than one skills entry before removing
+                            var skillsEntries = $(".row.cert");
+                            if (skillsEntries.length > 1) {
+                            // Remove the last skills entry
+                            skillsEntries.last().remove();
+                            }
+                        });
+                        });
 
-  // Remove the `id` attribute from the cloned certificate entry (if needed)
-  clonedCertificateEntry.removeAttr("id");
-
-  // Append the cloned certificate entry after the current certificate entry
-  clonedCertificateEntry.insertAfter(certificateEntry);
-
-  // Reset the values of the cloned inputs (optional)
-  clonedCertificateEntry.find('textarea[name="cert_descp[]"]').val('');
-  clonedCertificateEntry.find('input[name="cert_year[]"]').val('');
-});
-
-
-var removecert = $("#remove_cert");
-
-// Add an event listener to the button
-removecert.click(function (event) {
-    // Prevent the default button behavior
-    event.preventDefault();
-
-    // Check if there is more than one skills entry before removing
-    var skillsEntries = $(".row.cert");
-    if (skillsEntries.length > 1) {
-        // Remove the last skills entry
-        skillsEntries.last().remove();
-    }
-});
-
-
-
-});
 
 </script>
 
