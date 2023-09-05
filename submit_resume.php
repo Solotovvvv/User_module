@@ -1,4 +1,9 @@
 <?php
+
+include 'includes/config.php';
+$pdo = Database::connection();
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
@@ -9,8 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = $_POST["address"];
     $objective = $_POST["summary"];
 
+
     $contacts = $_POST['contacts'];
     $schools = $_POST['schools'];
+    $school_address= $_POST['school_address'];
     $school_sy = $_POST['school_sy'];
     $exp_company = $_POST['exp_company'];
     $exp_position = $_POST['exp_position'];
@@ -21,30 +28,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cert_desc = $_POST['cert_desc'];
     $cert_year = $_POST['cert_year'];
     
+    
+
+    function implodeOrSetDefault($array, $defaultValue = '') {
+      if (!empty($array)) {
+          return implode(',  ', $array);
+      } else {
+          return $defaultValue;
+      }
+  }
+
+  $contact = implodeOrSetDefault($contacts, '');
+  $school = implodeOrSetDefault($schools, '');
+  $s_address = implodeOrSetDefault($school_address, '');
+  $s_sy = implodeOrSetDefault($school_sy, '');
+  $e_company = implodeOrSetDefault($exp_company, '');
+  $e_position = implodeOrSetDefault($exp_position, '');
+  $w_experience = implodeOrSetDefault($work_experience, '');
+  $w_address = implodeOrSetDefault($work_address, '');
+  $e_year = implodeOrSetDefault($exp_year, '');
+  $skill = implodeOrSetDefault($skills, '');
+  $c_desc = implodeOrSetDefault($cert_desc, '');
+  $c_year = implodeOrSetDefault($cert_year, '');
+  $fullname = $firstName . ' ' . $middleName . ' ' . $surname;
 
 
 
-    // // Process the data (you can perform database operations or any other processing here)
-
-    // Loop through the submitted data and display the values
-  $company = implode(', ', $exp_company);
+  $query = "INSERT INTO `user_resume`(`fullname`, `position`, `address`, `summary`, `contacts`, `schools`, `school_address`, `school_sy`, `exp_company`, `exp_position`, `work_exp`, `work_address`, `exp_year`, `skills`, `cert_desc`, `cert_year`)  
+   VALUES (:fullname, :position, :address, :summary, :contacts, :schools, :school_address, :school_sy, :exp_company, :exp_position, :work_exp, :work_address, :exp_year, :skills, :cert_desc, :cert_year)";
 
 
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(':fullname', $fullname, PDO::PARAM_STR);
+$stmt->bindParam(':position', $position, PDO::PARAM_STR);
+$stmt->bindParam(':address', $address, PDO::PARAM_STR);
+$stmt->bindParam(':summary', $objective, PDO::PARAM_STR);
+$stmt->bindParam(':contacts', $contact, PDO::PARAM_STR);
+$stmt->bindParam(':schools', $school, PDO::PARAM_STR);
+$stmt->bindParam(':school_address', $s_address, PDO::PARAM_STR);
+$stmt->bindParam(':school_sy', $s_sy, PDO::PARAM_STR);
+$stmt->bindParam(':exp_company', $e_company, PDO::PARAM_STR);
+$stmt->bindParam(':exp_position', $e_position, PDO::PARAM_STR);
+$stmt->bindParam(':work_exp', $w_experience, PDO::PARAM_STR);
+$stmt->bindParam(':work_address', $w_address, PDO::PARAM_STR);
+$stmt->bindParam(':exp_year', $e_year, PDO::PARAM_STR);
+$stmt->bindParam(':skills', $skill, PDO::PARAM_STR);
+$stmt->bindParam(':cert_desc', $c_desc, PDO::PARAM_STR);
+$stmt->bindParam(':cert_year', $c_year, PDO::PARAM_STR);
 
-  
-  
 
-    // // You can perform additional processing or database operations here as needed.
-
-    // // Console log the arrays for debugging
-    // echo "<script>";
-    // echo "console.log('Companies:', " . json_encode($companies) . ");";
-    // echo "console.log('Positions:', " . json_encode($positions) . ");";
-    // echo "console.log('Years:', " . json_encode($years) . ");";
-    // echo "console.log('Experiences:', " . json_encode($experiences) . ");";
-    // echo "</script>";
+    if ($stmt->execute()) {
+      header("Location: index.php");
+      exit();
+  } else {
+      echo "Error inserting data: " . $stmt->errorInfo()[2];
+  }
+   
 } else {
-    // Handle cases where the request method is not POST
+ 
     echo "Invalid request method.";
 }
 ?>
