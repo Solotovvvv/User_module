@@ -540,7 +540,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             clonedCertificateEntry.insertAfter(certificateEntry);
 
                             // Reset the values of the cloned inputs (optional)
-                            clonedCertificateEntry.find('textarea[name="cert_descp[]"]').val('');
+                            clonedCertificateEntry.find('textarea[name="cert_desc[]"]').val('');
                             clonedCertificateEntry.find('input[name="cert_year[]"]').val('');
                         });
 
