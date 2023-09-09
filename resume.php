@@ -37,8 +37,15 @@ $pdo = null;
         <div id="hd">
             <div class="yui-gc">
                 <div class="yui-u first">
-                    <h1>KENJIE P. ARCEO</h1>
-                    <h2>Front-End Developer</h2>
+                <?php
+                            // Iterate through the resume data and display experience information
+                            foreach ($resumeData as $row) {
+                                $name = $row['fullname'];
+                                $position = $row['position'];
+                            }
+                            ?>
+                    <h1><?php echo $name; ?></h1>
+                    <h2><?php echo $position; ?></h2>
                 </div>
                 <div class="yui-u">
                     <div class="contact-info">
