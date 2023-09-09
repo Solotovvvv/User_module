@@ -86,13 +86,29 @@ try {
                             <h2>Education</h2>
                         </div>
                         <div class="yui-u">
+                    <?php
                         foreach ($resumeData as $row) {
+                            $school = $row['schools'];
+                            $school_a = $row['school_address'];
+                            $school_y = $row['school_sy'];
 
+                            $school_array = explode(', ', $school);
+                            $school_a_array = explode(', ', $school_a);
+                            $school_y_array = explode(', ', $school_y);
 
+                            // Check if all arrays have the same length before looping through them
+                            $array_length = count($school_array);
 
-                            
+                            for ($i = 0; $i < $array_length; $i++) {
+                                echo '<div class="job">';
+                                echo '<h2><strong>' . $school_array[$i] . '</strong></h2>';
+                                echo '<h3>' . $school_a_array[$i] . '</h3>';
+                                echo '<h4>' . $school_y_array[$i] . '</h4>';
+                                echo '</div>';
+                            }
                         }
-                          
+                        ?>
+
                         </div>
                     </div>
                     
